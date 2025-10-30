@@ -11,12 +11,12 @@ This guide will help you **set up**, **run**, and **test** the project step by s
 ---
 
 ## 📁 Project Structure
-bash
+```
 ParkNow_project/
 ├── ParkNowApp/ # Frontend - React Native (Expo)
 │ 
 └── Server/ # Backend - Node.js + TypeScript (Express)
-
+```
 ## 🔗 Useful Links
 
 - 🎥 [Demo Video](https://drive.google.com/file/d/17wzy9yqQLnddniegm784dH_0mOT4JE_W/view?usp=sharing)
@@ -131,16 +131,16 @@ flowchart LR
 ## ✅ Testing the App
 
 Test the Backend:
-bash
+```
 cd Server
 npm run build
 npm run dev
-
+```
 Test the Frontend:
-bash
+```
 cd ../ParkNowApp
 npm start
-
+```
 ---
 
 ## 🧩 Common Issues and Fixes
