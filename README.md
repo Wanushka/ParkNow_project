@@ -11,7 +11,7 @@ This guide will help you **set up**, **run**, and **test** the project step by s
 ---
 
 ## 📁 Project Structure
-
+bash
 ParkNow_project/
 ├── ParkNowApp/ # Frontend - React Native (Expo)
 │ 
@@ -88,6 +88,8 @@ And set your backend API URL:
 
 export const API_BASE_URL = "http://YOUR_IP_ADDRESS:8001/api";
 
+---
+
 ## 🧠 Notes:
 
 For Android Emulator, use:
@@ -106,6 +108,8 @@ Or scan the QR code using the Expo Go app on your phone
 
 Your mobile app will now connect to the backend 🎉
 
+---
+
 ## 🧠 Architecture Overview
 
 [React Native App]
@@ -121,26 +125,36 @@ Or in Mermaid (if supported):
 flowchart LR
   A[React Native (Expo)] -->|HTTP / Socket.IO| B[Node.js + Express Server]
   B -->|MySQL Queries| C[(MySQL Database)]
-✅ Testing the App
+
+---
+
+## ✅ Testing the App
 
 Test the Backend:
-
+bash
 cd Server
 npm run build
 npm run dev
-Test the Frontend:
 
+Test the Frontend:
+bash
 cd ../ParkNowApp
 npm start
 
+---
+
 ## 🧩 Common Issues and Fixes
-Problem	Reason	Solution
-❌ CORS error	Server not allowing requests	Ensure cors is enabled (already included in this project)
-❌ Database error	Wrong credentials or database missing	Check .env and confirm parknow_db exists
-❌ App not connecting	Wrong IP or port	Use your LAN IP (not localhost)
-❌ Port already in use	Another app using 8001	Change PORT in .env (e.g., 8002)
+Problem Reason Solution
+
+❌ CORS error	Server not allowing requests Ensure cors is enabled (already included in this project)
+❌ Database error Wrong credentials or database missing	Check .env and confirm parknow_db exists
+❌ App not connecting Wrong IP or port Use your LAN IP (not localhost)
+❌ Port already in use Another app using 8001 Change PORT in .env (e.g., 8002)
+
+---
 
 ## 🌟 Next Improvements (Optional)
+
 🧪 Add Jest tests for backend and frontend
 
 ⚡ Add GitHub Actions (CI/CD)
@@ -150,5 +164,7 @@ Problem	Reason	Solution
 🗺️ Add Admin Dashboard or enhanced map features
 
 If something doesn’t work, check the console logs in both Server and Expo, they’ll tell you what’s wrong.
+
+---
 
 Made with ❤️ by Wanushka Lakmal
