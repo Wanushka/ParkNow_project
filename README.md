@@ -49,10 +49,14 @@ cd ParkNow_project
 ⚙️ Step 2 — Setup the Backend (Server)
 
 1️⃣ Go to the server folder
-```cd Server```
+```
+cd Server
+```
 
 2️⃣ Install dependencies
-```npm install```
+```
+npm install
+```
 
 3️⃣ Create a .env file inside Server/
 ```
