@@ -68,7 +68,10 @@ import provided database file inside of your MySQL server.
 
 🚀 Step 4 — Run the Backend Server
 
-```npm run dev```
+```
+npm run dev
+
+```
 If it starts successfully, you’ll see something like:
 Server running on http://localhost:8001
 Database connected!
@@ -76,10 +79,14 @@ Database connected!
 📱 Step 5 — Setup the Frontend (Expo App)
 
 1️⃣ Go to the app folder
-```cd ../ParkNowApp```
+```
+cd ../ParkNowApp
+```
 
 2️⃣ Install dependencies
-```npm install```
+```
+npm install
+```
 
 3️⃣ Set your API Base URL
 Open this file:
@@ -132,8 +139,11 @@ npm start
 Problem Reason Solution
 
 ❌ CORS error	Server not allowing requests Ensure cors is enabled (already included in this project).
+
 ❌ Database error Wrong credentials or database missing	Check .env and confirm parknow_db exists.
+
 ❌ App not connecting Wrong IP or port Use your LAN IP (not localhost).
+
 ❌ Port already in use Another app using 8001 Change PORT in .env (e.g., 8002).
 
 ---
