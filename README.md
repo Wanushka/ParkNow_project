@@ -16,9 +16,8 @@ A small parking/reservation application consisting of a React Native (Expo) fron
 
 ## Quick links
 
-- Demo video (replace with actual URL): https://example.com/your-demo-video
-- MySQL schema: `Server/schema.sql`
-- MySQL seed data: `Server/seed.sql`
+- [Demo Video :](https://drive.google.com/file/d/17wzy9yqQLnddniegm784dH_0mOT4JE_W/view?usp=sharing)
+- [MySQL Database File :](https://drive.google.com/file/d/1-r6Ue3qEAK1XfjSXtn0UXeHagZa7MV7S/view?usp=sharing)
 
 ---
 
@@ -178,13 +177,6 @@ If you want to add unit tests, consider adding Jest + ts-jest for the server and
 - CORS errors: ensure the API server is running and CORS is enabled.
 - DB connection errors: confirm `.env` values and that MySQL is running and accessible.
 - Mobile device can't reach API: replace `API_BASE_URL` with your machine LAN IP and ensure firewall allows the port (default 8001).
-
----
-
-## Demo video
-
-Placeholder: https://example.com/your-demo-video
-
 
 ---
 
