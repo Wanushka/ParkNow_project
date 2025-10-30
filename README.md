@@ -41,33 +41,34 @@ Make sure you have the following installed:
 ---
 
 ## ⚙️ Step 1 — Clone the Repository
-
+```
 git clone https://github.com/Wanushka/ParkNow_project.git
 cd ParkNow_project
+```
 
 ⚙️ Step 2 — Setup the Backend (Server)
 
 1️⃣ Go to the server folder
-cd Server
+```cd Server```
 
 2️⃣ Install dependencies
-npm install
+```npm install```
 
 3️⃣ Create a .env file inside Server/
-
+```
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_USER=root
 DB_PASSWORD=your_mysql_password
 DB_NAME=parknow_db
 PORT=8001
-
+```
 ⚙️ Step 3 — Create Database
 import provided database file inside of your MySQL server.
 
 🚀 Step 4 — Run the Backend Server
 
-npm run dev
+```npm run dev```
 If it starts successfully, you’ll see something like:
 Server running on http://localhost:8001
 Database connected!
@@ -75,10 +76,10 @@ Database connected!
 📱 Step 5 — Setup the Frontend (Expo App)
 
 1️⃣ Go to the app folder
-cd ../ParkNowApp
+```cd ../ParkNowApp```
 
 2️⃣ Install dependencies
-npm install
+```npm install```
 
 3️⃣ Set your API Base URL
 Open this file:
@@ -97,7 +98,9 @@ http://10.0.2.2:8001/api
 For real mobile devices, use your computer’s LAN IP, e.g.:
 
 📲 Step 6 — Run the Expo App
+```
 npm start
+```
 Then choose:
 
 a → Run on Android emulator
@@ -107,24 +110,6 @@ w → Run in web browser
 Or scan the QR code using the Expo Go app on your phone
 
 Your mobile app will now connect to the backend 🎉
-
----
-
-## 🧠 Architecture Overview
-
-[React Native App]
-       |
-       | REST API + WebSocket
-       v
-[Node.js + Express Server]
-       |
-       v
-[MySQL Database]
-Or in Mermaid (if supported):
-
-flowchart LR
-  A[React Native (Expo)] -->|HTTP / Socket.IO| B[Node.js + Express Server]
-  B -->|MySQL Queries| C[(MySQL Database)]
 
 ---
 
@@ -146,10 +131,10 @@ npm start
 ## 🧩 Common Issues and Fixes
 Problem Reason Solution
 
-❌ CORS error	Server not allowing requests Ensure cors is enabled (already included in this project)
-❌ Database error Wrong credentials or database missing	Check .env and confirm parknow_db exists
-❌ App not connecting Wrong IP or port Use your LAN IP (not localhost)
-❌ Port already in use Another app using 8001 Change PORT in .env (e.g., 8002)
+❌ CORS error	Server not allowing requests Ensure cors is enabled (already included in this project).
+❌ Database error Wrong credentials or database missing	Check .env and confirm parknow_db exists.
+❌ App not connecting Wrong IP or port Use your LAN IP (not localhost).
+❌ Port already in use Another app using 8001 Change PORT in .env (e.g., 8002).
 
 ---
 
