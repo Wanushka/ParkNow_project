@@ -1,189 +1,226 @@
-# ParkNow (ParkNow_project)
+# 🚗 ParkNow — Parking Reservation App
 
-A small parking/reservation application consisting of a React Native (Expo) frontend and a Node + TypeScript backend using MySQL. This README explains how to set up and run both projects locally, provides a simple architecture diagram, testing/validation steps, and points to the included MySQL schema & seed files.
+**ParkNow** is a small parking and reservation application built with:
 
----
+- 📱 **React Native (Expo)** — Mobile & Web frontend  
+- ⚙️ **Node.js + TypeScript (Express)** — Backend API server  
+- 🗄️ **MySQL** — Database  
 
-## Repository layout
-
-- `ParkNowApp/` – Expo React Native app (mobile + web).
-  - `src/api/api.ts` — API client; set `API_BASE_URL` to point at the server.
-- `Server/` – Express + TypeScript API server.
-  - `src/config/db.ts` — MySQL connection.
-  - `schema.sql` and `seed.sql` — SQL files to create the database schema and seed sample data.
+This guide will help you **set up**, **run**, and **test** the project step by step.
 
 ---
 
-## Quick links
+## 📁 Project Structure
 
-- [Demo Video :](https://drive.google.com/file/d/17wzy9yqQLnddniegm784dH_0mOT4JE_W/view?usp=sharing)
-- [MySQL Database File :](https://drive.google.com/file/d/1-r6Ue3qEAK1XfjSXtn0UXeHagZa7MV7S/view?usp=sharing)
+ParkNow_project/
+│
+├── ParkNowApp/ # Frontend - React Native (Expo)
+│ └── src/api/api.ts # Set API base URL here
+│
+└── Server/ # Backend - Node.js + TypeScript (Express)
+├── src/config/db.ts # MySQL connection setup
+├── schema.sql # Database schema (tables)
+└── seed.sql # Sample data for testing
 
----
-
-## Prerequisites
-
-- Node.js (LTS recommended, e.g. 18+)
-- npm (or yarn)
-- Expo CLI (for mobile/Expo workflows): `npm install -g expo-cli` (optional if you use `npx`)
-- MySQL server (8.x or compatible) or MariaDB
-- Git (to clone the repo)
-
-On Windows, run commands from PowerShell (examples below are for PowerShell).
+yaml
+Copy code
 
 ---
 
-## Environment variables
+## 🔗 Useful Links
 
-Server expects the following environment variables (create a `.env` file inside `Server/`):
+- 🎥 [Demo Video](https://drive.google.com/file/d/17wzy9yqQLnddniegm784dH_0mOT4JE_W/view?usp=sharing)
+- 💾 [MySQL Database File](https://drive.google.com/file/d/1-r6Ue3qEAK1XfjSXtn0UXeHagZa7MV7S/view?usp=sharing)
 
-```
-# Server/.env (example)
+---
+
+## 🧰 Prerequisites
+
+Make sure you have the following installed:
+
+| Tool | Version | Download |
+|------|----------|-----------|
+| **Node.js** | 18+ | [https://nodejs.org](https://nodejs.org) |
+| **npm** (comes with Node) | — | — |
+| **Expo CLI** | Latest | Run `npm install -g expo-cli` |
+| **MySQL** | 8.x | [https://dev.mysql.com/downloads/](https://dev.mysql.com/downloads/) |
+| **Git** | Latest | [https://git-scm.com/](https://git-scm.com/) |
+
+💡 *If you’re using Windows, run all commands in **PowerShell**.*
+
+---
+
+## ⚙️ Step 1 — Clone the Repository
+
+```bash
+git clone https://github.com/Wanushka/ParkNow_project.git
+cd ParkNow_project
+⚙️ Step 2 — Setup the Backend (Server)
+1️⃣ Go to the server folder
+bash
+Copy code
+cd Server
+2️⃣ Install dependencies
+bash
+Copy code
+npm install
+3️⃣ Create a .env file inside Server/
+Paste this example and update with your MySQL credentials:
+
+ini
+Copy code
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_USER=root
-DB_PASSWORD=your_password
+DB_PASSWORD=your_mysql_password
 DB_NAME=parknow_db
 PORT=8001
-```
-
-Frontend (Expo) uses an `API_BASE_URL` variable inside code (or you can create `ParkNowApp/.env`). Example value to use in `ParkNowApp/.env`:
-
-```
-API_BASE_URL=http://your ip address:8001/api  # replace with your machine LAN IP or http://localhost:8001/api if using an emulator
-```
-
-Notes about `API_BASE_URL`:
-- On a physical phone, use your dev machine's LAN IP (so the device can reach your server).
-- On Android emulator running on the same machine, you can use `http://10.0.2.2:8001/api`.
-
----
-
-## Setup and run (PowerShell)
-
-Open two terminals (or more): one for the server and one for the app.
-
-1) Server (API)
-
-```powershell
-# from repo root
-cd .\Server
-# install dependencies
-npm install
-# create or edit .env (see example above)
-# create mysql database and import schema/seed (see next section)
-# start in development (auto-reloads)
-npm run dev
-# or build and run production:
-npm run build; npm start
-```
-
-2) Frontend (Expo)
-
-```powershell
-# from repo root
-cd .\ParkNowApp
-npm install
-# start expo metro
-npm start
-# open on Android emulator
-npm run android
-# open on iOS simulator (macOS only)
-npm run ios
-# open in web browser
-npm run web
-```
-
-When running on a real device, make sure `API_BASE_URL` is reachable from the device (use your host LAN IP). If you get CORS issues, the server includes `cors` dependency — ensure CORS is enabled in `Server` code (it's already a dependency in package.json).
-
----
-
-## Importing the MySQL schema and seed
-
-The repository contains `Server/schema.sql` and `Server/seed.sql`. To create the database and import sample data:
-
-```powershell
-# Replace user/password/host/name accordingly
-# Example using the mysql CLI (PowerShell):
+🗄️ Step 3 — Setup the Database
+Option 1: Using Command Line
+bash
+Copy code
 mysql -u root -p -h 127.0.0.1 -P 3306 < .\Server\schema.sql
 mysql -u root -p -h 127.0.0.1 -P 3306 < .\Server\seed.sql
-```
+Option 2: Using MySQL Workbench / phpMyAdmin
+Open your SQL client
 
-Or, manually in MySQL Workbench / phpMyAdmin: run the SQL statements in `schema.sql` first, then `seed.sql`.
+Create a new database named parknow_db
 
-After import, ensure `DB_NAME` in `.env` matches the database name created by `schema.sql` (defaults to `parknow_db` in `src/config/db.ts`).
+Run the code from schema.sql
 
----
+Then run seed.sql to insert sample data
 
-## Architecture (high-level)
+✅ Done! The database is ready.
 
-Simple diagram (ASCII):
-
-```
-[Mobile / Web (Expo React Native)]
-           |
-           | REST / HTTP + WebSocket (Socket.IO)
-           v
-  [Express API Server (TypeScript)]
-           |
-           | MySQL (mysql2)
-           v
-      [MySQL Database]
-
-Live reservations push: Server <-> Client via Socket.IO for realtime updates
-```
-
-Mermaid flow (if your Markdown renderer supports it):
-
-```mermaid
-flowchart LR
-  A[Mobile / Web (Expo)] -->|HTTP / REST| B[Express + Socket.IO Server]
-  B -->|MySQL queries| C[MySQL Database]
-  B <-->|Socket.IO| A
-```
-
-Files of interest:
-- `ParkNowApp/src/api/api.ts` — API client and base URL config
-- `Server/src/routes/*` — API endpoints
-- `Server/src/config/db.ts` — DB pool and env keys
-
----
-
-## Tests / Validation
-
-This repository doesn't include a test suite by default (no Jest/Mocha setup). To validate the projects locally, use the following quick checks:
-
-- Server TypeScript compile (basic validation):
-
-```powershell
-cd .\Server
-npm run build
-```
-
-- Start server in dev mode and watch logs for runtime errors:
-
-```powershell
+🚀 Step 4 — Run the Backend Server
+bash
+Copy code
 npm run dev
-```
+If it starts successfully, you’ll see something like:
 
-- For the frontend, open the Expo dev tools and run on emulator/device; test flows manually (signup/login, create/cancel reservation, admin spot creation).
+arduino
+Copy code
+Server running on http://localhost:8001
+Database connected!
+📱 Step 5 — Setup the Frontend (Expo App)
+1️⃣ Go to the app folder
+bash
+Copy code
+cd ../ParkNowApp
+2️⃣ Install dependencies
+bash
+Copy code
+npm install
+3️⃣ Set your API Base URL
+Open this file:
 
-If you want to add unit tests, consider adding Jest + ts-jest for the server and react-native-testing-library + jest for Expo app.
+bash
+Copy code
+ParkNowApp/src/api/api.ts
+And set your backend API URL:
 
----
+ts
+Copy code
+export const API_BASE_URL = "http://YOUR_IP_ADDRESS:8001/api";
+🧠 Notes:
 
-## Troubleshooting
+For Android Emulator, use:
 
-- CORS errors: ensure the API server is running and CORS is enabled.
-- DB connection errors: confirm `.env` values and that MySQL is running and accessible.
-- Mobile device can't reach API: replace `API_BASE_URL` with your machine LAN IP and ensure firewall allows the port (default 8001).
+ts
+Copy code
+http://10.0.2.2:8001/api
+For real mobile devices, use your computer’s LAN IP, e.g.:
 
----
+ts
+Copy code
+http://192.168.1.5:8001/api
+📲 Step 6 — Run the Expo App
+bash
+Copy code
+npm start
+Then choose:
 
-## Next steps / suggestions
+a → Run on Android emulator
 
-- Add automated tests (Jest) and a `npm test` script for both server and app.
-- Add CI (GitHub Actions) to run `npm run build` for the server and `tsc` for the app on PRs.
-- Add more robust environment configuration for Expo (e.g., `react-native-dotenv` or using `expo-constants`).
+w → Run in web browser
 
----
+Or scan the QR code using the Expo Go app on your phone
+
+Your mobile app will now connect to the backend 🎉
+
+🧠 Architecture Overview
+csharp
+Copy code
+[React Native App]
+       |
+       | REST API + WebSocket
+       v
+[Node.js + Express Server]
+       |
+       v
+[MySQL Database]
+Or in Mermaid (if supported):
+
+mermaid
+Copy code
+flowchart LR
+  A[React Native (Expo)] -->|HTTP / Socket.IO| B[Node.js + Express Server]
+  B -->|MySQL Queries| C[(MySQL Database)]
+✅ Testing the App
+Test the Backend:
+bash
+Copy code
+cd Server
+npm run build
+npm run dev
+Test the Frontend:
+bash
+Copy code
+cd ../ParkNowApp
+npm start
+Now test these features:
+
+✅ User Signup / Login
+
+✅ View available parking spots
+
+✅ Create & cancel reservations
+
+✅ Realtime updates with Socket.IO
+
+🧩 Common Issues and Fixes
+Problem	Reason	Solution
+❌ CORS error	Server not allowing requests	Ensure cors is enabled (already included in this project)
+❌ Database error	Wrong credentials or database missing	Check .env and confirm parknow_db exists
+❌ App not connecting	Wrong IP or port	Use your LAN IP (not localhost)
+❌ Port already in use	Another app using 8001	Change PORT in .env (e.g., 8002)
+
+🌟 Next Improvements (Optional)
+🧪 Add Jest tests for backend and frontend
+
+⚡ Add GitHub Actions (CI/CD)
+
+🔐 Use .env in Expo app with react-native-dotenv
+
+🗺️ Add Admin Dashboard or enhanced map features
+
+🧾 Quick Command Summary
+bash
+Copy code
+# 1️⃣ Clone the project
+git clone https://github.com/Wanushka/ParkNow_project.git
+
+# 2️⃣ Setup server
+cd Server
+npm install
+# Create .env and import schema.sql + seed.sql
+npm run dev
+
+# 3️⃣ Setup frontend
+cd ../ParkNowApp
+npm install
+npm start
+🎉 Now your ParkNow App is running locally!
+If something doesn’t work, check the console logs in both Server and Expo, they’ll tell you what’s wrong.
+
+Made with ❤️ by Wanushka Lakmal
