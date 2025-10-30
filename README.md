@@ -9,7 +9,7 @@ A small parking/reservation application consisting of a React Native (Expo) fron
 - `ParkNowApp/` – Expo React Native app (mobile + web).
   - `src/api/api.ts` — API client; set `API_BASE_URL` to point at the server.
 - `Server/` – Express + TypeScript API server.
-  - `src/config/db.ts` — MySQL connection (reads env variables).
+  - `src/config/db.ts` — MySQL connection.
   - `schema.sql` and `seed.sql` — SQL files to create the database schema and seed sample data.
 
 ---
@@ -45,20 +45,18 @@ DB_PORT=3306
 DB_USER=root
 DB_PASSWORD=your_password
 DB_NAME=parknow_db
-JWT_SECRET=verysecretkey
 PORT=8001
 ```
 
 Frontend (Expo) uses an `API_BASE_URL` variable inside code (or you can create `ParkNowApp/.env`). Example value to use in `ParkNowApp/.env`:
 
 ```
-API_BASE_URL=http://192.168.1.100:8001/api  # replace with your machine LAN IP or http://localhost:8001/api if using an emulator
+API_BASE_URL=http://your ip address:8001/api  # replace with your machine LAN IP or http://localhost:8001/api if using an emulator
 ```
 
 Notes about `API_BASE_URL`:
 - On a physical phone, use your dev machine's LAN IP (so the device can reach your server).
 - On Android emulator running on the same machine, you can use `http://10.0.2.2:8001/api`.
-- `src/api/api.ts` in `ParkNowApp` defaults to `http://192.168.8.184:8001/api` if no env override is present. Update it or set `API_BASE_URL`.
 
 ---
 
@@ -187,15 +185,6 @@ If you want to add unit tests, consider adding Jest + ts-jest for the server and
 
 Placeholder: https://example.com/your-demo-video
 
-Replace with your hosted demo (YouTube, Vimeo or direct MP4 URL).
-
----
-
-## Included files (important)
-
-- `Server/schema.sql` — create tables
-- `Server/seed.sql` — insert sample records
-- `ParkNowApp/src/api/api.ts` — default API URL; adjust for your environment
 
 ---
 
@@ -206,10 +195,3 @@ Replace with your hosted demo (YouTube, Vimeo or direct MP4 URL).
 - Add more robust environment configuration for Expo (e.g., `react-native-dotenv` or using `expo-constants`).
 
 ---
-
-If you want, I can:
-- add a real demo video link if you provide it,
-- create a sample `.env.example` in both `Server/` and `ParkNowApp/`, or
-- add a simple `npm test` (Jest) setup for the Server and create a minimal unit test to validate the build.
-
-Tell me which of the above you'd like me to do next.
